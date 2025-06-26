@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幻世游戏 - 创造无限可能</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        dark: '#1D2129',
+                        light: '#F2F3F5',
+                        'neutral-100': '#F7F8FA',
+                        'neutral-200': '#E5E6EB',
+                        'neutral-300': '#C9CDD4',
+                        'neutral-400': '#86909C',
+                        'neutral-500': '#4E5969',
+                        'neutral-600': '#272E3B',
+                        'neutral-700': '#1D2129',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .bg-gradient-game {
+                background: linear-gradient(135deg, #165DFF 0%, #0A2463 100%);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter text-neutral-700 bg-neutral-100">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center">
+                        <span class="text-2xl font-bold text-white text-shadow-lg">幻世游戏</span>
+                    </a>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition-colors duration-300 font-medium">首页</a>
+                    <a href="#games" class="text-white hover:text-secondary transition-colors duration-300 font-medium">游戏产品</a>
+                    <a href="#about" class="text-white hover:text-secondary transition-colors duration-300 font-medium">关于我们</a>
+                    <a href="#news" class="text-white hover:text-secondary transition-colors duration-300 font-medium">新闻动态</a>
+                    <a href="#contact" class="text-white hover:text-secondary transition-colors duration-300 font-medium">联系我们</a>
+                </nav>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                    <i class="fa fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="#home" class="block py-2 text-neutral-700 hover:text-primary transition-colors duration-300">首页</a>
+                <a href="#games" class="block py-2 text-neutral-700 hover:text-primary transition-colors duration-300">游戏产品</a>
+                <a href="#about" class="block py-2 text-neutral-700 hover:text-primary transition-colors duration-300">关于我们</a>
+                <a href="#news" class="block py-2 text-neutral-700 hover:text-primary transition-colors duration-300">新闻动态</a>
+                <a href="#contact" class="block py-2 text-neutral-700 hover:text-primary transition-colors duration-300">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/80 to-dark/90 mix-blend-multiply"></div>
+            <img src="https://picsum.photos/id/160/1920/1080" alt="游戏背景" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white mb-6 leading-tight text-shadow-lg animate-float">
+                创造无限可能<br>探索奇幻世界
+            </h1>
+            <p class="text-[clamp(1rem,3vw,1.25rem)] text-white/90 mb-10 max-w-2xl mx-auto text-shadow">
+                幻世游戏致力于打造高品质的游戏体验，让玩家在虚拟世界中体验不一样的人生
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#games" class="px-8 py-3 bg-secondary hover:bg-secondary/90 text-white font-medium rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    探索游戏
+                </a>
+                <a href="#about" class="px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-full transition-all duration-300 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    了解我们
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
+            <a href="#games" class="text-white opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <i class="fa fa-angle-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 游戏产品 -->
+    <section id="games" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-700 mb-4">我们的游戏产品</h2>
+                <p class="text-neutral-500 max-w-2xl mx-auto">每一款游戏都是我们团队精心打造的心血结晶，带给你不一样的游戏体验</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 游戏卡片 1 -->
+                <div class="bg-neutral-100 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-60">
+                        <img src="https://picsum.photos/id/237/600/400" alt="奇幻冒险" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="px-3 py-1 bg-secondary text-white text-sm font-medium rounded-full">角色扮演</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-700 mb-2">奇幻冒险：永恒传说</h3>
+                        <p class="text-neutral-500 mb-4">探索神秘大陆，与各种生物战斗，完成任务并揭开世界的秘密</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-medium">2025.03.15 发布</span>
+                            <a href="#" class="text-secondary hover:text-secondary/80 font-medium flex items-center">
+                                了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 游戏卡片 2 -->
+                <div class="bg-neutral-100 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-60">
+                        <img src="https://picsum.photos/id/110/600/400" alt="星际战争" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="px-3 py-1 bg-primary text-white text-sm font-medium rounded-full">策略</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-700 mb-2">星际战争：征服宇宙</h3>
+                        <p class="text-neutral-500 mb-4">建立自己的星际帝国，发展科技，征服其他星球，成为宇宙的主宰</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-medium">2025.05.22 发布</span>
+                            <a href="#" class="text-secondary hover:text-secondary/80 font-medium flex items-center">
+                                了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 游戏卡片 3 -->
+                <div class="bg-neutral-100 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-60">
+                        <img src="https://picsum.photos/id/133/600/400" alt="都市赛车" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="px-3 py-1 bg-neutral-700 text-white text-sm font-medium rounded-full">竞速</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-700 mb-2">都市赛车：无限狂飙</h3>
+                        <p class="text-neutral-500 mb-4">在城市街道上展开激烈的赛车比赛，改装你的爱车，成为街头赛车之王</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-medium">2025.07.08 即将发布</span>
+                            <a href="#" class="text-secondary hover:text-secondary/80 font-medium flex items-center">
+                                预约测试 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    查看全部游戏 <i class="fa fa-gamepad ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-neutral-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-700 mb-6">关于幻世游戏</h2>
+                    <p class="text-neutral-500 mb-6 leading-relaxed">
+                        幻世游戏成立于2018年，是一家专注于开发高品质游戏的独立游戏公司。我们的团队由来自世界各地的游戏爱好者组成，致力于为玩家带来创新、有趣且富有深度的游戏体验。
+                    </p>
+                    <p class="text-neutral-500 mb-6 leading-relaxed">
+                        我们相信游戏不仅仅是娱乐，更是一种艺术形式和沟通方式。通过精心设计的游戏世界和引人入胜的故事情节，我们希望能够触动玩家的心灵，带给他们难忘的体验。
+                    </p>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">25+</div>
+                            <div class="text-neutral-500 text-sm">游戏作品</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">120+</div>
+                            <div class="text-neutral-500 text-sm">团队成员</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">5M+</div>
+                            <div class="text-neutral-500 text-sm">全球玩家</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">15+</div>
+                            <div class="text-neutral-500 text-sm">国际奖项</div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        加入我们 <i class="fa fa-rocket ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="order-1 lg:order-2 relative">
+                    <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://picsum.photos/id/160/800/600" alt="团队工作照" class="w-full h-auto">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-secondary rounded-xl opacity-20 z-0"></div>
+                    <div class="absolute -top-6 -left-6 w-40 h-40 bg-primary rounded-xl opacity-20 z-0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新闻动态 -->
+    <section id="news" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-700 mb-4">新闻动态</h2>
+                <p class="text-neutral-500 max-w-2xl mx-auto">了解我们的最新动态、游戏更新和行业资讯</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 新闻卡片 1 -->
+                <article class="bg-neutral-100 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-48">
+                        <img src="https://picsum.photos/id/20/600/400" alt="游戏更新" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="text-white text-sm font-medium">2025.06.20</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-700 mb-2">《奇幻冒险：永恒传说》重大更新，全新内容上线</h3>
+                        <p class="text-neutral-500 mb-4 line-clamp-3">我们很高兴地宣布，《奇幻冒险：永恒传说》的最新更新现已上线！本次更新带来了全新的区域、角色和任务系统，为玩家带来更加丰富的游戏体验。</p>
+                        <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- 新闻卡片 2 -->
+                <article class="bg-neutral-100 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-48">
+                        <img src="https://picsum.photos/id/48/600/400" alt="游戏发布会" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="text-white text-sm font-medium">2025.06.10</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-700 mb-2">幻世游戏年度发布会定档，多款新作即将揭晓</h3>
+                        <p class="text-neutral-500 mb-4 line-clamp-3">幻世游戏2025年度发布会将于7月15日举行，我们将在发布会上揭晓多款全新游戏作品和现有游戏的更新计划。敬请期待！</p>
+                        <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- 新闻卡片 3 -->
+                <article class="bg-neutral-100 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-48">
+                        <img src="https://picsum.photos/id/180/600/400" alt="合作公告" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="text-white text-sm font-medium">2025.05.28</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-700 mb-2">幻世游戏与知名IP达成合作，全新游戏正在开发中</h3>
+                        <p class="text-neutral-500 mb-4 line-clamp-3">我们很高兴地宣布，幻世游戏已与国际知名IP达成合作，将基于该IP开发一款全新的角色扮演游戏。更多信息将在后续公布。</p>
+                        <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 bg-white hover:bg-neutral-50 text-primary font-medium rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 border border-neutral-200">
+                    查看更多新闻 <i class="fa fa-newspaper-o ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-gradient-game text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">联系我们</h2>
+                <p class="text-white/80 max-w-2xl mx-auto">有任何问题或建议？请随时与我们联系，我们将尽快回复您</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-xl">
+                        <h3 class="text-xl font-bold mb-6">发送消息</h3>
+                        <form>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-white/90 mb-2">姓名</label>
+                                    <input type="text" id="name" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-white placeholder-white/50" placeholder="您的姓名">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-white/90 mb-2">邮箱</label>
+                                    <input type="email" id="email" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-white placeholder-white/50" placeholder="您的邮箱">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-sm font-medium text-white/90 mb-2">主题</label>
+                                <input type="text" id="subject" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-white placeholder-white/50" placeholder="消息主题">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-sm font-medium text-white/90 mb-2">消息</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary text-white placeholder-white/50 resize-none" placeholder="请输入您的消息内容..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full px-6 py-3 bg-secondary hover:bg-secondary/90 text-white font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                发送消息 <i class="fa fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-xl h-full">
+                        <h3 class="text-xl font-bold mb-6">联系方式</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-secondary mr-4">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-white/90 mb-1">公司地址</h4>
+                                    <p class="text-white/70">上海市浦东新区张江高科技园区科苑路88号</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-secondary mr-4">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-white/90 mb-1">联系电话</h4>
+                                    <p class="text-white/70">+86 021-5555-6666</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-secondary mr-4">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-white/90 mb-1">电子邮箱</h4>
+                                    <p class="text-white/70">contact@fantasygame.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12">
+                            <h3 class="text-xl font-bold mb-6">关注我们</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary transition-colors duration-300">
+                                    <i class="fa fa-weibo"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary transition-colors duration-300">
+                                    <i class="fa fa-wechat"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary transition-colors duration-300">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary transition-colors duration-300">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary transition-colors duration-300">
+                                    <i class="fa fa-youtube-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">幻世游戏</h3>
+                    <p class="text-neutral-400 mb-6">创造无限可能，探索奇幻世界</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">
+                            <i class="fa fa-wechat"></i>
+                        </a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-neutral-400 hover:text-white transition-colors duration-300">首页</a></li>
+                        <li><a href="#games" class="text-neutral-400 hover:text-white transition-colors duration-300">游戏产品</a></li>
+                        <li><a href="#about" class="text-neutral-400 hover:text-white transition-colors duration-300">关于我们</a></li>
+                        <li><a href="#news" class="text-neutral-400 hover:text-white transition-colors duration-300">新闻动态</a></li>
+                        <li><a href="#contact" class="text-neutral-400 hover:text-white transition-colors duration-300">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">支持</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">帮助中心</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">常见问题</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">技术支持</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">退款政策</a></li>
+                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">社区论坛</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">订阅我们</h3>
+                    <p class="text-neutral-400 mb-4">订阅我们的新闻通讯，获取最新游戏动态和优惠信息</p>
+                    <form class="flex">
+                        <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 bg-neutral-700 border border-neutral-600 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-secondary text-white w-full">
+                        <button type="submit" class="bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-r-lg transition-colors duration-300">
+                            <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-neutral-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-neutral-400 text-sm mb-4 md:mb-0">© 2025 幻世游戏. 保留所有权利.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-300">用户协议</a>
+                    <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-300">隐私政策</a>
+                    <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-300">Cookie 政策</a>
+                    <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-300">法律声明</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 用户协议模态框 -->
+    <div id="terms-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-auto m-4">
+            <div class="p-6 border-b border-neutral-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-neutral-700">用户协议</h3>
+                    <button id="close-terms" class="text-neutral-500 hover:text-neutral-700">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6 max-h-[calc(90vh-120px)] overflow-y-auto">
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">一、服务条款的接受</h4>
+                <p class="text-neutral-600 mb-4">欢迎使用幻世游戏（以下简称“本公司”）所提供的游戏及相关服务。使用本公司服务即表示您同意接受本服务条款的所有内容。如果您不同意本服务条款的任何内容，请不要使用本公司服务。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">二、服务内容</h4>
+                <p class="text-neutral-600 mb-4">本公司通过互联网向用户提供各种游戏及相关服务，包括但不限于游戏下载、游戏内购、社区互动等。本公司保留随时变更、中断或终止部分或全部网络服务的权利。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">三、用户账号</h4>
+                <p class="text-neutral-600 mb-4">注册用户账号时，您应提供真实、准确、完整的个人信息。如因您提供的信息不真实、不准确或不完整而导致的任何问题，本公司不承担任何责任。您有责任维护账号的安全性，并对您账号下的所有活动负责。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">四、用户行为规范</h4>
+                <p class="text-neutral-600 mb-4">您在使用本公司服务时不得从事以下行为：</p>
+                <ul class="list-disc pl-6 mb-4 text-neutral-600 space-y-1">
+                    <li>上传、发布或传播任何违法、有害、威胁、辱骂、骚扰、侵犯他人隐私、诽谤、淫秽、色情、暴力或其他违反公序良俗的内容；</li>
+                    <li>干扰或破坏本公司服务或与本公司服务相连的服务器和网络；</li>
+                    <li>未经本公司许可，使用任何机器人、蜘蛛、爬虫或其他自动程序、装置或设备来访问、收集、监控、数据挖掘或复制本公司服务的任何部分；</li>
+                    <li>试图未经授权访问本公司服务、用户账户或与本公司服务相连的计算机系统或网络；</li>
+                    <li>从事任何可能对本公司声誉造成负面影响的行为。</li>
+                </ul>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">五、知识产权</h4>
+                <p class="text-neutral-600 mb-4">本公司服务中包含的所有内容，包括但不限于文字、图形、图像、音频、视频、软件、代码、商标、商号、服务标记等，均受知识产权法律的保护。未经本公司书面许可，您不得复制、修改、发布、传播、转让或销售本公司服务中的任何内容。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">六、隐私政策</h4>
+                <p class="text-neutral-600 mb-4">本公司重视用户的隐私。您使用本公司服务即表示您同意本公司按照《隐私政策》收集、使用、存储和披露您的个人信息。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">七、免责声明</h4>
+                <p class="text-neutral-600 mb-4">本公司服务按“现状”和“现有”的基础提供，不提供任何形式的明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。在任何情况下，本公司均不对因使用或无法使用本公司服务而导致的任何直接、间接、偶然、特殊、惩罚性或后果性的损害承担责任，即使本公司已被告知可能存在此类损害的可能性。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">八、适用法律和争议解决</h4>
+                <p class="text-neutral-600 mb-4">本服务条款的解释、效力和执行适用中华人民共和国法律。如双方就本服务条款发生争议，应首先通过友好协商解决；协商不成的，任何一方均有权将争议提交本公司所在地有管辖权的人民法院解决。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">九、条款修改</h4>
+                <p class="text-neutral-600 mb-4">本公司有权随时修改本服务条款，并在本公司网站上公布修改后的条款。您继续使用本公司服务即表示您同意接受修改后的条款。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">十、其他条款</h4>
+                <p class="text-neutral-600 mb-4">如果本服务条款的任何部分被认定为无效或不可执行，则该部分应被解释为尽可能接近原条款的意图，并且其余部分应继续有效和可执行。本公司未行使或延迟行使其在本服务条款下的任何权利或救济不应被视为放弃该权利或救济。</p>
+            </div>
+            <div class="p-6 border-t border-neutral-200">
+                <button id="agree-terms" class="px-6 py-2 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors duration-300">
+                    我同意
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 隐私政策模态框 -->
+    <div id="privacy-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-auto m-4">
+            <div class="p-6 border-b border-neutral-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-neutral-700">隐私政策</h3>
+                    <button id="close-privacy" class="text-neutral-500 hover:text-neutral-700">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6 max-h-[calc(90vh-120px)] overflow-y-auto">
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">一、导言</h4>
+                <p class="text-neutral-600 mb-4">幻世游戏（以下简称“本公司”）重视用户的隐私。本隐私政策旨在说明本公司如何收集、使用、存储和保护您的个人信息，以及您对这些信息所享有的控制权。请仔细阅读本隐私政策，使用本公司服务即表示您同意本公司按照本隐私政策收集和使用您的信息。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">二、信息收集</h4>
+                <p class="text-neutral-600 mb-4">我们可能收集以下类型的个人信息：</p>
+                <ul class="list-disc pl-6 mb-4 text-neutral-600 space-y-1">
+                    <li>注册信息：当您注册本公司服务时，我们可能会收集您的用户名、电子邮件地址、密码、出生日期、性别等信息；</li>
+                    <li>使用信息：当您使用本公司服务时，我们可能会收集您的游戏行为数据、设备信息、IP地址、地理位置信息等；</li>
+                    <li>支付信息：如果您在本公司服务中进行购买，我们可能会收集您的支付方式、信用卡信息、交易记录等；</li>
+                    <li>通信信息：当您与本公司通信时，我们可能会收集您的通信内容和通信记录。</li>
+                </ul>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">三、信息使用</h4>
+                <p class="text-neutral-600 mb-4">我们收集您的个人信息主要用于以下目的：</p>
+                <ul class="list-disc pl-6 mb-4 text-neutral-600 space-y-1">
+                    <li>提供和维护本公司服务；</li>
+                    <li>个性化您的用户体验；</li>
+                    <li>处理您的交易和支付；</li>
+                    <li>向您提供技术支持和客户服务；</li>
+                    <li>发送您可能感兴趣的信息和促销活动；</li>
+                    <li>分析和改进本公司服务；</li>
+                    <li>确保本公司服务的安全性，防止欺诈和滥用；</li>
+                    <li>遵守适用的法律法规和法律程序。</li>
+                </ul>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">四、信息共享</h4>
+                <p class="text-neutral-600 mb-4">我们不会向第三方出售您的个人信息，但可能会在以下情况下与第三方共享您的个人信息：</p>
+                <ul class="list-disc pl-6 mb-4 text-neutral-600 space-y-1">
+                    <li>与我们的服务提供商共享：我们可能会将您的个人信息共享给帮助我们提供服务的第三方服务提供商，例如支付处理商、数据分析服务商、云存储提供商等；</li>
+                    <li>在法律要求的情况下：我们可能会根据法律、法规、法律程序或政府要求披露您的个人信息；</li>
+                    <li>在合并、收购或资产转让的情况下：如果本公司参与合并、收购或资产转让，您的个人信息可能会作为交易的一部分被转移；</li>
+                    <li>获得您的同意：我们可能会在获得您明确同意的情况下与第三方共享您的个人信息。</li>
+                </ul>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">五、信息存储和保护</h4>
+                <p class="text-neutral-600 mb-4">我们采用合理的安全措施来保护您的个人信息免受未经授权的访问、使用或披露。这些措施包括但不限于数据加密、访问控制、安全审计等。尽管我们采取了这些安全措施，但请注意，没有任何数据传输或存储系统是100%安全的。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">六、您的权利</h4>
+                <p class="text-neutral-600 mb-4">您对自己的个人信息享有以下权利：</p>
+                <ul class="list-disc pl-6 mb-4 text-neutral-600 space-y-1">
+                    <li>访问和更正您的个人信息；</li>
+                    <li>删除您的个人信息；</li>
+                    <li>限制或反对某些类型的信息处理；</li>
+                    <li>获取您个人信息的副本；</li>
+                    <li>撤回您之前给予的同意；</li>
+                    <li>向监管机构投诉。</li>
+                </ul>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">七、Cookies和类似技术</h4>
+                <p class="text-neutral-600 mb-4">我们使用Cookies和类似技术来收集和存储信息，以改善您的用户体验。您可以通过浏览器设置拒绝或删除Cookies，但这可能会影响您使用本公司服务的体验。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">八、政策更新</h4>
+                <p class="text-neutral-600 mb-4">我们可能会不时更新本隐私政策。当我们进行重大变更时，我们将通过在本公司网站上发布新的隐私政策通知您。您继续使用本公司服务即表示您同意接受更新后的隐私政策。</p>
+                
+                <h4 class="text-lg font-bold text-neutral-700 mb-2">九、联系我们</h4>
+                <p class="text-neutral-600 mb-4">如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
+                <ul class="list-disc pl-6 mb-4 text-neutral-600 space-y-1">
+                    <li>电子邮件：privacy@fantasygame.com</li>
+                    <li>邮寄地址：上海市浦东新区张江高科技园区科苑路88号 幻世游戏 隐私政策部</li>
+                </ul>
+            </div>
+            <div class="p-6 border-t border-neutral-200">
+                <button id="agree-privacy" class="px-6 py-2 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors duration-300">
+                    我同意
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-dark', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+        
+        // 移动端菜单
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 如果是移动端，点击后关闭菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // 用户协议和隐私政策模态框
+        const termsModal = document.getElementById('terms-modal');
+        const privacyModal = document.getElementById('privacy-modal');
+        const closeTerms = document.getElementById('close-terms');
+        const closePrivacy = document.getElementById('close-privacy');
+        const agreeTerms = document.getElementById('agree-terms');
+        const agreePrivacy = document.getElementById('agree-privacy');
+        
+        // 页脚中的链接
+        const termsLinks = document.querySelectorAll('a[href="#"]');
+        const privacyLinks = document.querySelectorAll('a[href="#"]');
+        
+        termsLinks.forEach(link => {
+            if (link.textContent.includes('用户协议')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    termsModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+        });
+        
+        privacyLinks.forEach(link => {
+            if (link.textContent.includes('隐私政策')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    privacyModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+        });
+        
+        closeTerms.addEventListener('click', () => {
+            termsModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        closePrivacy.addEventListener('click', () => {
+            privacyModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        agreeTerms.addEventListener('click', () => {
+            termsModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        agreePrivacy.addEventListener('click', () => {
+            privacyModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // 点击模态框外部关闭
+        termsModal.addEventListener('click', (e) => {
+            if (e.target === termsModal) {
+                termsModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        privacyModal.addEventListener('click', (e) => {
+            if (e.target === privacyModal) {
+                privacyModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // 表单提交处理
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('感谢您的留言！我们将尽快回复您。');
+                contactForm.reset();
+            });
+        }
+        
+        // 订阅表单处理
+        const subscribeForm = document.querySelector('footer form');
+        if (subscribeForm) {
+            subscribeForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('感谢您的订阅！我们将定期向您发送最新消息。');
+                subscribeForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
+    
